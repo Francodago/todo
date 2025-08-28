@@ -1,5 +1,8 @@
+import './styles.css';
 export default function loadPage() {
   let body = document.querySelector('body');
+  const container = document.createElement('div');
+  container.classList.add('container');
   ///todo sidebar section
   const sidebar = document.createElement('aside');
   sidebar.classList.add('sidebar');
@@ -38,22 +41,26 @@ export default function loadPage() {
   const addTodoBtn = document.createElement('button');
   addTodoBtn.classList.add('add-todo-btn');
   addTodoBtn.textContent = 'Add New ToDo';
-  form.append(addTodoBtn);
+
   const addTodoForm = document.createElement('div');
   addTodoForm.id = 'add-todo-form';
   const todoForm = document.createElement('form');
   todoForm.id = 'add-todo';
+  form.append(addTodoBtn, addTodoForm);
   //* add fields for the todos form:
   //todo title input field:
   const tittleLabel = document.createElement('label');
   tittleLabel.textContent = 'title:';
   tittleLabel.setAttribute('for', 'title');
-
   const titleInput = document.createElement('input');
   titleInput.type = 'text'; // property
   titleInput.name = 'title'; // property
   titleInput.id = 'title'; // connect with label
   titleInput.placeholder = 'Enter todo title';
+
+  const titleFormGroup = document.createElement('div');
+  titleFormGroup.classList.add('form-group'); //todo add each input and label section into the div with class form-group
+  titleFormGroup.append(tittleLabel, titleInput);
   //todo description input field:
   const descLabel = document.createElement('label');
   descLabel.textContent = 'Description:';
@@ -65,6 +72,10 @@ export default function loadPage() {
   descInput.id = 'description';
   descInput.placeholder = 'Enter description';
 
+  const descFormGroup = document.createElement('div');
+  descFormGroup.classList.add('form-group'); //todo add each input and label section into the div with class form-group
+  descFormGroup.append(descLabel, descInput);
+
   //todo due date field:
   const dateLabel = document.createElement('label');
   dateLabel.textContent = 'Due Date:';
@@ -74,6 +85,10 @@ export default function loadPage() {
   dateInput.type = 'date';
   dateInput.name = 'dueDate';
   dateInput.id = 'date';
+
+  const dateFormGroup = document.createElement('div');
+  dateFormGroup.classList.add('form-group'); //todo add each input and label section into the div with class form-group
+  dateFormGroup.append(dateLabel, dateInput);
 
   //todo priority field:
   const priorityLabel = document.createElement('label');
@@ -91,6 +106,35 @@ export default function loadPage() {
     prioritySelect.appendChild(option);
   });
 
+  const priorityFormGroup = document.createElement('div');
+  priorityFormGroup.classList.add('form-group'); //todo add each input and label section into the div with class form-group
+  priorityFormGroup.append(priorityLabel, prioritySelect);
+
+  //todo checkbox field for isComplete:
+  const isCompleteLabel = document.createElement('label');
+  isCompleteLabel.textContent = 'Completed?';
+  isCompleteLabel.setAttribute('for', 'isComplete');
+  isCompleteLabel.setAttribute('class', 'fine-print');
+  const isCompleteInput = document.createElement('input');
+  isCompleteInput.type = 'checkbox';
+  isCompleteInput.id = 'isComplete';
+  isCompleteInput.name = 'isComplete';
+
+  const isCompleteFormGroup = document.createElement('div');
+  isCompleteFormGroup.classList.add('form-group'); //todo add each input and label section into the div with class form-group
+  isCompleteFormGroup.append(isCompleteLabel, isCompleteInput);
+  //todo textArea field for notes:
+  const notesLabel = document.createElement('label');
+  notesLabel.textContent = 'Notes:';
+  notesLabel.setAttribute('for', 'notes');
+  const notesTextArea = document.createElement('textarea');
+  notesTextArea.id = 'notes';
+  notesTextArea.name = 'notes';
+  notesTextArea.rows = 3;
+
+  const notesFormGroup = document.createElement('div');
+  notesFormGroup.classList.add('form-group'); //todo add each input and label section into the div with class form-group
+  notesFormGroup.append(notesLabel, notesTextArea);
   //todo submit and reset buttons:
   const submitBtn = document.createElement('button');
   submitBtn.classList.add('submit-btn');
@@ -102,14 +146,12 @@ export default function loadPage() {
   resetBtn.textContent = 'Reset Todo';
 
   todoForm.append(
-    tittleLabel,
-    titleInput,
-    descLabel,
-    descInput,
-    dateLabel,
-    dateInput,
-    priorityLabel,
-    prioritySelect
+    titleFormGroup,
+    descFormGroup,
+    dateFormGroup,
+    priorityFormGroup,
+    isCompleteFormGroup,
+    notesFormGroup
   );
   addTodoForm.append(todoForm);
 
@@ -125,13 +167,13 @@ export default function loadPage() {
     formHeading,
     todosHeading,
     form,
-    addTodoForm,
     submitBtn,
     resetBtn,
     todoTitle,
     todoList,
     addTodo
   ); ///* append to content div
-  body.append(sidebar);
-  body.insertAdjacentElement('beforeend', content);
+  container.append(sidebar, content);
+  body.appendChild(container);
+  // body.insertAdjacentElement('beforeend', content);
 }
