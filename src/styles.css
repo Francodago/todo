@@ -7,6 +7,18 @@
   margin: 0;
   padding: 0;
 }
+:root {
+  --surface-0: hsl(129, 19%, 14%);
+  --surface-1: hsl(98, 36%, 38%);
+  --surface-2: hsl(138, 35%, 72%);
+  --text-1: hsl(0, 0%, 0%);
+  --text-2: hsl(229, 12%, 66%);
+  --text-3: hsl(0, 0%, 100%);
+  --required: hsl(321, 32%, 56%);
+  --accent: hsl(140, 81%, 11%);
+  --border: 1px solid hsl(229, 22%, 19%);
+  --container: hsl(125, 16%, 46%);
+}
 input,
 button,
 select,
@@ -17,15 +29,18 @@ textarea {
 body {
   font-family: system-ui, sans-serif;
   min-height: 100vh;
-  background-color: lightblue;
+  background-color: var(--surface-0);
+  color: var(--text-1);
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 1.5;
 }
 .container {
   width: 80%;
   display: flex;
-  background-color: lightgreen;
+  background-color: var(--container);
+  border-radius: 15px;
 }
 form {
   display: grid;
@@ -42,9 +57,46 @@ form {
 label {
   text-transform: uppercase;
   font-size: 1rem;
+
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
 }
-input {
+input,
+select,
+textarea {
   border-radius: 16px;
   padding: 1rem 1.5rem;
+  background: var(--surface-2);
+  color: var(--text-1);
+  border: var(--border);
+  accent-color: var(--accent);
+}
+input:not([type='checkbox'], [type='radio']) {
   width: 100%;
+}
+.form-group:has(.fine-print) {
+  grid-column: 1/-1;
+  display: flex;
+  gap: 1.5rem;
+}
+button {
+  cursor: pointer;
+  background-color: var(--accent);
+  color: var(--text-3);
+  padding: 1em 1.5em;
+  margin: 1rem;
+  border: 0;
+  border-radius: 16px;
+
+  &:hover,
+  &:focus-visible {
+    background-color: hsl(from var(--accent) h s 30%);
+  }
+}
+.form-heading,
+.todos-header {
+  padding: 1rem;
+}
+.sidebar h2 {
+  padding: 1rem;
 }

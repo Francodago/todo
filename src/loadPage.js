@@ -155,23 +155,19 @@ export default function loadPage() {
   );
   addTodoForm.append(todoForm);
 
-  const todoTitle = document.createElement('h2');
-  todoTitle.textContent = 'Todos';
-  const todoList = document.createElement('ul');
-  todoList.classList.add('todo-list');
-  const addTodo = document.createElement('button');
-  addTodo.textContent = 'Add new todo';
-  addTodo.classList.add('todo-btn');
+  // const todoTitle = document.createElement('h2');
+  // todoTitle.textContent = 'Todos';
+  // const todoList = document.createElement('ul');
+  // todoList.classList.add('todo-list');
 
   content.append(
     formHeading,
     todosHeading,
     form,
     submitBtn,
-    resetBtn,
-    todoTitle,
-    todoList,
-    addTodo
+    resetBtn
+    // todoTitle,
+    // todoList
   ); ///* append to content div
   container.append(sidebar, content);
   body.appendChild(container);
