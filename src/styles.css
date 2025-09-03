@@ -100,3 +100,6 @@ button {
 .sidebar h2 {
   padding: 1rem;
 }
+ul {
+  list-style: none;
+}

@@ -1,19 +1,29 @@
 import './styles.css';
+import home from './assets/icons/home.svg';
 export default function loadPage() {
   let body = document.querySelector('body');
   const container = document.createElement('div');
   container.classList.add('container');
-  ///todo sidebar section
-  const sidebar = document.createElement('aside');
-  sidebar.classList.add('sidebar');
-  const projectTitle = document.createElement('h2');
-  projectTitle.textContent = 'Projects';
+  ///todo sidebar section for projects (I WILL START WORKING ON THIS SECTION)
+  const nav = document.createElement('nav');
+  nav.classList.add('sidebar');
+  // const projectTitle = document.createElement('h2');
+  // projectTitle.textContent = 'Projects';
+  const projectsList = document.createElement('ul');
+  projectsList.classList.add('projects-list');
+  const projects = document.createElement('li');
+  const projectsText = document.createElement('span');
+  projectsText.textContent = 'Projects';
+  const projectIcon = document.createElement('img');
+  projectIcon.src = home;
+  projectIcon.alt = 'Home';
+  projects.append(projectsText, projectIcon);
+  projectsList.append(projects);
   const addPrjectsBtn = document.createElement('button');
   addPrjectsBtn.textContent = 'Add new project';
   addPrjectsBtn.classList.add('add-project');
-  const projectsList = document.createElement('ul');
-  projectsList.classList.add('projects-list');
-  sidebar.append(projectTitle, projectsList, addPrjectsBtn);
+  nav.append(projectsList, addPrjectsBtn);
+
   //todo main section
   //todo add the DOM elements that i will use:
 
@@ -169,7 +179,6 @@ export default function loadPage() {
     // todoTitle,
     // todoList
   ); ///* append to content div
-  container.append(sidebar, content);
+  container.append(nav, content);
   body.appendChild(container);
-  // body.insertAdjacentElement('beforeend', content);
 }
