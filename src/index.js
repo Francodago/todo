@@ -2,9 +2,13 @@ import loadPage from './loadPage';
 import projectManager from './project-manager';
 import { createTodos } from './todos';
 import projects from './projects';
+import { toggleSubMenu, toggleSidebar } from './sidebarManip';
 
-//*call dom manipulation module to take care of the UI
+//*call dom manipulation modules to take care of the UI
 loadPage();
+toggleSubMenu();
+toggleSidebar();
+
 //*call blank project on first land and start with the default project
 const myProjectManager = projectManager(); //*the project manager object
 // //* create default project

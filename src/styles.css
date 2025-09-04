@@ -31,14 +31,12 @@ body {
   min-height: 100vh;
   background-color: var(--surface-0);
   color: var(--text-1);
-  display: grid;
-  grid-template-columns: auto 1fr;
   line-height: 1.5;
 }
 .container {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr; /*  todo refresh how to make responsive grid w: grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); */
   background-color: var(--container);
-  border-radius: 15px;
 }
 form {
   display: grid;
@@ -99,11 +97,19 @@ button {
   padding: 1rem;
 }
 #sidebar {
+  /*todo fix the sidebar to show properly its contents*/
   height: 100vh;
   width: 250px;
   padding: 0.5rem 1rem;
   background-color: var(--surface-2);
   border-right: 3px solid var(--surface-1);
+  transition: 300ms ease-in-out;
+  overflow: hidden;
+  text-wrap: nowrap;
+}
+#sidebar.close {
+  padding: 0.5rem;
+  width: 60px;
 }
 #sidebar > ul > li:first-child {
   display: flex;
@@ -157,4 +163,27 @@ ul {
 }
 #sidebar .sub-menu.show {
   grid-template-rows: 1fr;
+}
+.rotate img:last-child {
+  rotate: -180deg;
+}
+.dropdown-btn img {
+  transition: 200ms ease;
+}
+#sidebar .sub-menu a {
+  padding-left: 2em;
+}
+.nav-toggle-btn {
+  margin-left: auto;
+  padding: 1em;
+  border: none;
+  border-radius: 0.5em;
+  background: none;
+  cursor: pointer;
+  img {
+    transition: rotate 150ms ease;
+  }
+}
+.nav-toggle-btn:hover {
+  background-color: var(--surface-1);
 }
