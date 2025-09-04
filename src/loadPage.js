@@ -1,27 +1,66 @@
 import './styles.css';
+import newProject from './assets/icons/new-folder.svg';
 import home from './assets/icons/home.svg';
+import arrowDown from './assets/icons/arrow-down.svg';
 export default function loadPage() {
   let body = document.querySelector('body');
   const container = document.createElement('div');
   container.classList.add('container');
   ///todo sidebar section for projects (I WILL START WORKING ON THIS SECTION)
   const nav = document.createElement('nav');
-  nav.classList.add('sidebar');
-  // const projectTitle = document.createElement('h2');
-  // projectTitle.textContent = 'Projects';
-  const projectsList = document.createElement('ul');
+  nav.id = 'sidebar';
+  const projectsList = document.createElement('ul'); //* ul for all the sidebar elements
   projectsList.classList.add('projects-list');
+
+  //todo logo section
+  const logo = document.createElement('li');
+  const logoTitle = document.createElement('span');
+  logoTitle.textContent = 'ToDo List';
+  logoTitle.classList.add('logo');
+  const logoIcon = document.createElement('img');
+  logoIcon.src = home;
+  logoIcon.alt = 'Home';
+  const toggleNavBar = document.createElement('button');
+  toggleNavBar.classList.add('nav-toggle-btn');
+  toggleNavBar.appendChild(logoIcon);
+  logo.append(logoTitle, toggleNavBar);
+
+  //todo projects dropdown section
   const projects = document.createElement('li');
-  const projectsText = document.createElement('span');
-  projectsText.textContent = 'Projects';
+  const projectsTitle = document.createElement('span');
+  projectsTitle.textContent = 'Projects';
   const projectIcon = document.createElement('img');
-  projectIcon.src = home;
-  projectIcon.alt = 'Home';
-  projects.append(projectsText, projectIcon);
-  projectsList.append(projects);
+  projectIcon.src = newProject;
+  projectIcon.alt = 'New Project';
+  const projectsDropdown = document.createElement('button');
+  projectsDropdown.classList.add('dropdown-btn');
+  const dropdown = document.createElement('img');
+  dropdown.src = arrowDown;
+  dropdown.alt = 'Arrow Down';
+  projectsDropdown.append(projectIcon, projectsTitle, dropdown);
+  //todo new ul inside projects li to display all the existing projects and the new ones created
+  const sidebarProjects = document.createElement('ul');
+  sidebarProjects.classList.add('sub-menu');
+  const subMenuContainer = document.createElement('div');
+  const generalProject = document.createElement('li');
+  const generalProjectLink = document.createElement('a');
+  generalProjectLink.href = '#';
+  generalProjectLink.textContent = 'General Project';
+  generalProject.append(generalProjectLink);
+  subMenuContainer.appendChild(generalProject);
+  //todo KEEP ADDING NEW PROJECTS TO THE (sidebarProjects) UL WITH THE DOM AS I CREATE THEM WITH THE (addProjects() method) FROM PROJECT-MANAGER MODULE FACTORY
+  sidebarProjects.append(subMenuContainer);
+  projects.append(projectsDropdown, sidebarProjects);
+
+  //todo append to projectList UL
+  projectsList.append(logo, projects);
+
+  //todo add project button needs to be inside the project dropdown menu
   const addPrjectsBtn = document.createElement('button');
   addPrjectsBtn.textContent = 'Add new project';
   addPrjectsBtn.classList.add('add-project');
+
+  //todo append to the nav
   nav.append(projectsList, addPrjectsBtn);
 
   //todo main section
