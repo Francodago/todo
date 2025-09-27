@@ -2,6 +2,7 @@ import './styles.css';
 import newProject from './assets/icons/new-folder.svg';
 import home from './assets/icons/home.svg';
 import arrowDown from './assets/icons/arrow-down.svg';
+import { toggleSidebar } from './sidebarManip';
 export default function loadPage() {
   let body = document.querySelector('body');
   const container = document.createElement('div');
@@ -20,10 +21,11 @@ export default function loadPage() {
   const logoIcon = document.createElement('img');
   logoIcon.src = home;
   logoIcon.alt = 'Home';
-  const toggleNavBar = document.createElement('button');
-  toggleNavBar.classList.add('nav-toggle-btn');
-  toggleNavBar.appendChild(logoIcon);
-  logo.append(logoTitle, toggleNavBar);
+  // const toggleNavBar = document.createElement('button');
+  // toggleNavBar.classList.add('nav-toggle-btn');
+  // toggleNavBar.onclick = toggleSidebar; //todo event listener
+  // toggleNavBar.appendChild(logoIcon);
+  logo.append(logoTitle);
 
   //todo projects dropdown section
   const projects = document.createElement('li');

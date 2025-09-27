@@ -9,14 +9,3 @@ export function toggleSubMenu() {
     }
   });
 }
-export function toggleSidebar() {
-  const toggleButton = document.querySelector('.nav-toggle-btn');
-  const sidebar = document.querySelector('#sidebar');
-  toggleButton.addEventListener('click', function () {
-    sidebar.classList.toggle('close');
-    Array.from(sidebar.getElementsByClassName('show')).forEach(ul => {
-      ul.classList.remove('show');
-      ul.previousElementSibling.classList.remove('rotate');
-    });
-  });
-}

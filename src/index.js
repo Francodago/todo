@@ -7,7 +7,6 @@ import { toggleSubMenu, toggleSidebar } from './sidebarManip';
 //*call dom manipulation modules to take care of the UI
 loadPage();
 toggleSubMenu();
-toggleSidebar();
 
 //*call blank project on first land and start with the default project
 const myProjectManager = projectManager(); //*the project manager object
