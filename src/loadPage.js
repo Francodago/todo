@@ -18,13 +18,6 @@ export default function loadPage() {
   const logoTitle = document.createElement('span');
   logoTitle.textContent = 'ToDo List';
   logoTitle.classList.add('logo');
-  const logoIcon = document.createElement('img');
-  logoIcon.src = home;
-  logoIcon.alt = 'Home';
-  // const toggleNavBar = document.createElement('button');
-  // toggleNavBar.classList.add('nav-toggle-btn');
-  // toggleNavBar.onclick = toggleSidebar; //todo event listener
-  // toggleNavBar.appendChild(logoIcon);
   logo.append(logoTitle);
 
   //todo projects dropdown section
@@ -40,7 +33,7 @@ export default function loadPage() {
   dropdown.src = arrowDown;
   dropdown.alt = 'Arrow Down';
   projectsDropdown.append(projectIcon, projectsTitle, dropdown);
-  //todo new ul inside projects li to display all the existing projects and the new ones created
+  //todo new ul inside projects li to display all the existing projects and create new ones
   const sidebarProjects = document.createElement('ul');
   sidebarProjects.classList.add('sub-menu');
   const subMenuContainer = document.createElement('div');
@@ -49,7 +42,15 @@ export default function loadPage() {
   generalProjectLink.href = '#';
   generalProjectLink.textContent = 'General Project';
   generalProject.append(generalProjectLink);
-  subMenuContainer.appendChild(generalProject);
+  //todo add a new project button to always be displayed at the end of the project list
+  const addNewProject = document.createElement('li');
+  const addNewProjectBtn = document.createElement('button');
+  addNewProjectBtn.textContent = '+ Add New Project';
+  addNewProjectBtn.classList.add('addProjectBtn');
+
+  addNewProject.appendChild(addNewProjectBtn);
+
+  subMenuContainer.append(generalProject, addNewProject);
   //todo KEEP ADDING NEW PROJECTS TO THE (sidebarProjects) UL WITH THE DOM AS I CREATE THEM WITH THE (addProjects() method) FROM PROJECT-MANAGER MODULE FACTORY
   sidebarProjects.append(subMenuContainer);
   projects.append(projectsDropdown, sidebarProjects);
@@ -57,13 +58,8 @@ export default function loadPage() {
   //todo append to projectList UL
   projectsList.append(logo, projects);
 
-  //todo add project button needs to be inside the project dropdown menu
-  const addPrjectsBtn = document.createElement('button');
-  addPrjectsBtn.textContent = 'Add new project';
-  addPrjectsBtn.classList.add('add-project');
-
   //todo append to the nav
-  nav.append(projectsList, addPrjectsBtn);
+  nav.appendChild(projectsList);
 
   //todo main section
   //todo add the DOM elements that i will use:

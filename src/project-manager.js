@@ -6,6 +6,7 @@ const projectManager = () => {
   myProjects.push(defaultProject);
   //todo methods for manging projects
   function addProjects(name) {
+    //todo make it so when i add a new project to the sub menu it shows always before the add new project button
     const project = new projects(name);
     myProjects.push(project);
     return project;
